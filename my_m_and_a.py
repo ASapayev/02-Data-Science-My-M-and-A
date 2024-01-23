@@ -1,6 +1,7 @@
 import pandas as pd 
 import re
 import my_ds_babel
+from io import StringIO
 
 
 def my_m_and_a(csv1, csv2, csv3):
@@ -38,3 +39,11 @@ def my_m_and_a(csv1, csv2, csv3):
 
     
     return csv_4.to_csv(index=False)
+
+content_database_1 = "only_wood_customer_us_1.csv"
+content_database_2 = "only_wood_customer_us_2.csv"
+content_database_3 = "only_wood_customer_us_3.csv"
+
+merged_csv = my_m_and_a(content_database_1,content_database_2, content_database_3)
+
+my_ds_babel.csv_to_sql(StringIO(merged_csv), 'plastic_free_boutique.sql', 'customers')
